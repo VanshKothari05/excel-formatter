@@ -65,6 +65,11 @@ const DIRECT_MAP = {
   "Fluorescence Color": "Fluorescence Color",
   Measurements: "Measurements",
   Lab: "Lab",
+"DiamondImage": "DiamondImage",
+"Heart image": "Heart image",
+"Arrow Image": "Arrow Image",
+"Aset Image": "Aset Image",
+"Origin ": "Origin ",
   "Fancy Color": "Fancy Color",
   "Fancy Color Intensity": "Fancy Color Intensity",
   "Fancy Color Overtone": "Fancy Color Overtone",
@@ -90,14 +95,7 @@ const DIRECT_MAP = {
   "Report Comments": "Cert comment",
 };
 
-// Columns that should always be empty in output
-const EMPTY_COLS = new Set([
-  "DiamondImage",
-  "Heart image",
-  "Arrow Image",
-  "Aset Image",
-  "Origin ",
-]);
+
 
 // +0e format fixture
 function toIntString(val) {
@@ -156,9 +154,7 @@ function pickMediaUrl(row) {
 function transformRow(row) {
   const out = {};
   for (const col of OUTPUT_COLUMNS) {
-    if (EMPTY_COLS.has(col)) {
-      out[col] = "";
-    } else if (col === "Report #") {
+    if (col === "Report #") {
       out[col] = toIntString(row["Report #"]);
     } else if (col === "RapNet Price") {
       const v = row["RapNet Price"] ?? row["BuyNow $/ct"] ?? "";
