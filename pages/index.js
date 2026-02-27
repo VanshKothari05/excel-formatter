@@ -337,7 +337,7 @@ export default function Home() {
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">
-            Excel Formatter
+            Rapnet - Nivoda
           </h1>
           <p className="text-slate-400 text-sm">
             Upload your CSV, XLSX, or XLS file and get a clean formatted XLSX
