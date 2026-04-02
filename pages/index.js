@@ -117,28 +117,23 @@ function extractFirstUrl(cellVal) {
   const first = str.search(/https?:\/\//);
   if (first === -1) return "";
 
-  const rest = str.slice(first + 8);
-  const secondOffset = rest.search(/https?:\/\//);
+  // Take the full URL starting from the first http
+  let raw = str.slice(first);
 
-  let raw;
-  if (secondOffset === -1) {
-    raw = str.slice(first).trim();
-  } else {
-    raw = str.slice(first, first + 8 + secondOffset).trim();
-  }
-
+  // Split only on whitespace (spaces, tabs, newlines) - not on embedded URLs
   const wsMatch = raw.match(/^[^\s]+/);
   return wsMatch ? wsMatch[0] : "";
 }
 
 function pickMediaUrl(row) {
-  const videoKeys = [
-    "VideoURL 1",
-    "VideoURL 2",
-    "VideoURL 3",
-    "VideoURL 4",
-    "VideoURL 5",
-  ];
+ const videoKeys = [
+  "VideoURL 1", "VideoURL 2", "VideoURL 3", "VideoURL 4", "VideoURL 5",
+  "Video Link",
+  "Video URL",
+  "VideoURL",
+  "VideoLink",
+  "Video",
+];
   for (const key of videoKeys) {
     const url = extractFirstUrl(row[key]);
     if (url) return url;
